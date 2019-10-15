@@ -1,0 +1,28 @@
+version: '3'
+services:
+  origin:
+    build:
+      context: .
+      dockerfile: origin.Dockerfile
+    networks:
+      - sshnw1
+    hostname: origin
+    user: ssher
+  jump:
+    build:
+      context: .
+      dockerfile: jump.Dockerfile
+    networks:
+      - sshnw1
+      - sshnw2
+    hostname: jump
+  dest:
+    build:
+      context: .
+      dockerfile: dest.Dockerfile
+    networks:
+      - sshnw2
+    hostname: dest
+networks:
+  sshnw1:
+  sshnw2:
